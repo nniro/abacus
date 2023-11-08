@@ -1,0 +1,28 @@
+Shell script to generate an ascii abacus.
+
+                    _________________
+                   | # # # # # # # # |
+                   | . . . . . . . . |
+                   |-----------------|
+                   | . . . . . . . . |
+                   | # # # # # # # # |
+                   | # # # # # # # # |
+                   | # # # # # # # # |
+                   | # # # # # # # # |
+                    -----------------
+
+
+It is possible to include genAbacus.sh in another script by
+first setting the variable _AS_LIBRARY=1 before importing.
+Like so :
+
+```
+_AS_LIBRARY=1
+. ./genAbacus.sh
+
+genAbacus 8 30 0
+```
+
+```
+genAbacus <abacus column count> <horizontal position> <initial number value>
+```
