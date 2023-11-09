@@ -83,8 +83,39 @@ genAbacus() {
 	genHorizontal $nDigits $offset " " "--" "- "
 }
 
+showHelp() {
+	cat << EOF
+Usage : $0 [-h] [-n INT] [-o INT] <value>
+
+ASCII soroban abacus generator.
+
+	-h	This help.
+	-n INT	The amount of columns in the abacus.
+	-o INT	Horizontal offset to draw the abacus.
+
+EOF
+}
+
 if [ "$_AS_LIBRARY" = "" ]; then
 	numDigits=8
+	offset=20
+	while getopts hn:o: f 2>/dev/null; do
+		case $f in
+			h) showHelp; exit 0 ;;
+			n) numDigits=$OPTARG;;
+			o) offset=$OPTARG;;
+		esac
+	done
+	[ $(($OPTIND > 1)) = 1 ] && shift $($bb expr $OPTIND - 1)
+
+	if [ "$2" != "" ]; then
+		showHelp
+		exit 1
+	fi
+
+	if [ "$offset" = "0" ]; then
+		offset=1
+	fi
 
 	# valueToTAbacus 99999999
 
@@ -92,5 +123,5 @@ if [ "$_AS_LIBRARY" = "" ]; then
 		set -- 0
 	fi
 
-	genAbacus $numDigits 20 "$1"
+	genAbacus $numDigits $offset "$1"
 fi
