@@ -118,7 +118,7 @@ while :; do
 		;;
 	esac
 	lastInput=$input
-	printf "\033[12A"
+	printf "\033[11A"
 	genAbacus $numDigits $offset "$currentValue"
 	printf "\033[%dG\033[2K^\033[0G" $(($offset + ($numDigits * 2) - ($colCursor * 2)))
 	printf "\033[2B"
