@@ -58,7 +58,7 @@ while :; do
 
 	#printf "$input" | $bb xxd -p
 
-	if [ "$(printf "$input" | $bb xxd -p)" = "1b" ]; then
+	if printf "$input" | $bb xxd -p | $bb grep -q "^1b" ; then
 		# we got an escape command
 		input=$(busybox sh -c 'read -rsn 2 input; printf "$input"')
 	fi
