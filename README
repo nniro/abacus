@@ -23,6 +23,14 @@ _AS_LIBRARY=1
 genAbacus 8 30 0
 ```
 
+When imported, the function itself accepts these arguments :
 ```
 genAbacus <abacus column count> <horizontal position> <initial number value>
+```
+
+The script genAbacus.sh has a CLI to set the options.
+You can view the help screen like so :
+
+```
+sh genAbacus.sh -h
 ```
